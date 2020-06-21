@@ -17,15 +17,15 @@ function App() {
   }, []);
 
   async function handleAddRepository() {
-    const {status, data} = await api.post('/repositories', {
+    const response = await api.post('/repositories', {
       "title": "Portfolio Project",
       "url": "https://github.com/FelipeRC/bootcamp-gostack12-challenge3-portfolio-web",
       "techs": ["ReactJS"]
     });
     
-    if (status && status === 201) {
-      setRepositories([...repositories, data]);
-    }
+    const repository = response.data;
+
+    setRepositories([...repositories, repository]);
   }
 
   async function handleRemoveRepository(id) {
